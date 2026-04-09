@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="60">
+    <!-- 自定义一些变量 -->
+    <Properties>
+        <!-- 变量定义 -->
+        <Property name="log_base_dir">logs/creatar-sde</Property>
+        <Property name="app_name">creatar-sde</Property>
+
+        <Property name="log_pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <!-- 单个日志文件最大大小，单位可以是KB, MB or GB -->
+        <Property name="max_single_file_size">100MB</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log_pattern}"/>
+        </Console>
+
+        <RollingFile name="DebugLogRollingFile" fileName="${log_base_dir}/debug.log"
+                     filePattern="${log_base_dir}/$${date:yyyy_MM_dd}/debug_%d{yyyy_MM_dd_HH}_%i.log.gz">
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log_pattern}" charset="UTF-8"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="false"/>
+                <SizeBasedTriggeringPolicy size="${max_single_file_size}"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax">
+                <Delete basePath="${log_base_dir}" maxDepth="2">
+                    <IfFileName glob="*/debug_*.log.gz">
+                        <IfLastModified age="9m">
+                            <IfAny>
+                                <IfAccumulatedFileSize exceeds="2MB"/>
+                                <IfAccumulatedFileCount exceeds="2"/>
+                            </IfAny>
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="InfoLogRollingFile" fileName="${log_base_dir}/info.log"
+                     filePattern="${log_base_dir}/$${date:yyyy_MM_dd}/info_%d{yyyy_MM_dd_HH}_%i.log.gz">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log_pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="${max_single_file_size}"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax">
+                <Delete basePath="${log_base_dir}" maxDepth="2">
+                    <IfFileName glob="*/info_*.log.gz">
+                        <IfAny>
+                            <IfAccumulatedFileSize exceeds="8MB"/>
+                            <IfAccumulatedFileCount exceeds="5"/>
+                            <IfLastModified age="9m"/>
+                        </IfAny>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="WarnLogRollingFile" fileName="${log_base_dir}/warn.log"
+                     filePattern="${log_base_dir}/$${date:yyyy_MM_dd}/warn_%d{yyyy_MM_dd_HH}_%i.log.gz">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log_pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="${max_single_file_size}"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax">
+                <Delete basePath="${log_base_dir}" maxDepth="2">
+                    <IfFileName glob="*/warn_*.log.gz">
+                        <IfAny>
+                            <IfAccumulatedFileSize exceeds="3GB"/>
+                            <IfAccumulatedFileCount exceeds="3000"/>
+                            <IfLastModified age="30d"/>
+                        </IfAny>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="ErrorLogRollingFile" fileName="${log_base_dir}/error.log"
+                     filePattern="${log_base_dir}/$${date:yyyy_MM_dd}/error_%d{yyyy_MM_dd_HH}_%i.log.gz">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${log_pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="${max_single_file_size}"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax">
+                <Delete basePath="${log_base_dir}" maxDepth="2">
+                    <IfFileName glob="*/error_*.log.gz">
+                        <IfAny>
+                            <IfAccumulatedFileSize exceeds="3GB"/>
+                            <IfAccumulatedFileCount exceeds="3000"/>
+                            <IfLastModified age="30d"/>
+                        </IfAny>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!-- 记录druid的SQL语句 -->
+        <RollingFile name="DruidSqlRollingFile" fileName="${log_base_dir}/druid.log"
+                     filePattern="${log_base_dir}/$${date:yyyy_MM_dd}/druid_%d{yyyy_MM_dd_HH}_%i.log.gz">
+            <PatternLayout pattern="${log_pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="${max_single_file_size}"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax">
+                <Delete basePath="${log_base_dir}" maxDepth="2" testMode="true">
+                    <IfFileName glob="*/druid_*.log.gz">
+                        <IfAny>
+                            <IfAccumulatedFileSize exceeds="3GB"/>
+                            <IfAccumulatedFileCount exceeds="3000"/>
+                            <IfLastModified age="30d"/>
+                        </IfAny>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <!--定义logger，只有定义了logger并引入的appender，appender才会生效-->
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="InfoLogRollingFile"/>
+            <AppenderRef ref="WarnLogRollingFile"/>
+            <AppenderRef ref="DebugLogRollingFile"/>
+            <AppenderRef ref="ErrorLogRollingFile"/>
+        </Root>
+
+        <Logger name="druid.sql.Statement" level="debug" additivity="false">
+            <appender-ref ref="DruidSqlRollingFile"/>
+        </Logger>
+
+        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+        <Logger name="org.springframework" level="INFO"/>
+        <Logger name="org.mybatis" level="INFO"/>
+
+        <!--log4j2 自带过滤日志-->
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error"/>
+        <Logger name="org.apache.catalina.util.LifecycleBase" level="error"/>
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn"/>
+        <Logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn"/>
+        <Logger name="org.crsh.plugin" level="warn"/>
+        <Logger name="org.crsh.ssh" level="warn"/>
+        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error"/>
+        <Logger name="org.hibernate.validator.internal.util.Version" level="warn"/>
+        <Logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="warn"/>
+        <Logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+        <Logger name="org.thymeleaf" level="warn"/>
+    </Loggers>
+</Configuration>
