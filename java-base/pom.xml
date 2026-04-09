@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.fly.demo</groupId>
-        <artifactId>java-demo</artifactId>
+        <artifactId>java-common</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
