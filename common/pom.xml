@@ -5,12 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.fly.demo</groupId>
-        <artifactId>java-demo</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
     </parent>
 
-    <artifactId>java-common</artifactId>
+    <groupId>com.fly.demo</groupId>
+    <artifactId>common</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <java.version>17</java.version>
