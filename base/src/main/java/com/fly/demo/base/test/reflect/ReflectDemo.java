@@ -1,6 +1,6 @@
 package com.fly.demo.base.test.reflect;
 
-import com.fly.demo.entity.People;
+import com.fly.demo.base.entity.People;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.*;

@@ -1,7 +1,7 @@
 package com.fly.demo.base.entity.design_pattern.abstract_factory;
 
-import com.fly.demo.entity.design_pattern.simple_factory.Coffee;
-import com.fly.demo.entity.design_pattern.simple_factory.LatteCoffee;
+import com.fly.demo.base.entity.design_pattern.simple_factory.Coffee;
+import com.fly.demo.base.entity.design_pattern.simple_factory.LatteCoffee;
 
 public class ItalyDessertFactory implements DessertFactory {
     @Override

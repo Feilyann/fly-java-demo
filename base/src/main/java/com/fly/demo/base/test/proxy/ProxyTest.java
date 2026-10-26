@@ -1,9 +1,9 @@
 package com.fly.demo.base.test.proxy;
 
-import com.fly.demo.test.proxy.cglib.CglibTarget;
-import com.fly.demo.test.proxy.jdk.Advance;
-import com.fly.demo.test.proxy.jdk.TargetImpl;
-import com.fly.demo.test.proxy.jdk.Target;
+import com.fly.demo.base.test.proxy.cglib.CglibTarget;
+import com.fly.demo.base.test.proxy.jdk.Advance;
+import com.fly.demo.base.test.proxy.jdk.TargetImpl;
+import com.fly.demo.base.test.proxy.jdk.Target;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

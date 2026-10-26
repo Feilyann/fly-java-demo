@@ -1,6 +1,6 @@
 package com.fly.demo.base.test.algorithm;
 
-import com.fly.demo.entity.EMail;
+import com.fly.demo.base.entity.EMail;
 
 import java.util.Arrays;
 

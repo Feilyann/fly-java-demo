@@ -1,7 +1,7 @@
 package com.fly.demo.base.test.unsafe;
 
-import com.fly.demo.entity.Money;
-import com.fly.demo.entity.Person;
+import com.fly.demo.base.entity.Money;
+import com.fly.demo.base.entity.Person;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;

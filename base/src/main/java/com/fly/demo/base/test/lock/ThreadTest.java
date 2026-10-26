@@ -1,8 +1,8 @@
 package com.fly.demo.base.test.lock;
 
-import com.fly.demo.entity.*;
-import com.fly.demo.util.DownloadUtil;
-import com.fly.demo.util.MathUtil;
+import com.fly.demo.base.entity.*;
+import com.fly.demo.base.util.DownloadUtil;
+import com.fly.demo.base.util.MathUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

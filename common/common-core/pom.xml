@@ -18,6 +18,11 @@
     </properties>
 
     <dependencies>
+        <!-- 内部私有构件：BusinessException / StringUtil / CommonConstant / BasePageQuery 等 -->
+        <dependency>
+            <groupId>com.creatar</groupId>
+            <artifactId>creatar-common-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

@@ -1,7 +1,7 @@
 package com.fly.demo.base.entity;
 
-import com.fly.demo.util.AlgorithmUtil;
-import com.fly.demo.util.MathUtil;
+import com.fly.demo.base.util.AlgorithmUtil;
+import com.fly.demo.base.util.MathUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

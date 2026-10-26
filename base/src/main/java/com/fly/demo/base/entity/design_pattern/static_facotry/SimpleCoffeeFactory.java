@@ -1,8 +1,8 @@
 package com.fly.demo.base.entity.design_pattern.static_facotry;
 
-import com.fly.demo.entity.design_pattern.simple_factory.AmericaCoffee;
-import com.fly.demo.entity.design_pattern.simple_factory.Coffee;
-import com.fly.demo.entity.design_pattern.simple_factory.LatteCoffee;
+import com.fly.demo.base.entity.design_pattern.simple_factory.AmericaCoffee;
+import com.fly.demo.base.entity.design_pattern.simple_factory.Coffee;
+import com.fly.demo.base.entity.design_pattern.simple_factory.LatteCoffee;
 
 public class SimpleCoffeeFactory {
 

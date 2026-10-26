@@ -1,9 +1,9 @@
 package com.fly.demo.base.entity.design_pattern;
 
-import com.fly.demo.entity.design_pattern.abstract_factory.AmericanCoffeeFactory;
-import com.fly.demo.entity.design_pattern.simple_factory.Coffee;
-import com.fly.demo.entity.design_pattern.simple_factory.CoffeeStore;
-import com.fly.demo.entity.design_pattern.single.SingletonHungry1;
+import com.fly.demo.base.entity.design_pattern.abstract_factory.AmericanCoffeeFactory;
+import com.fly.demo.base.entity.design_pattern.simple_factory.Coffee;
+import com.fly.demo.base.entity.design_pattern.simple_factory.CoffeeStore;
+import com.fly.demo.base.entity.design_pattern.single.SingletonHungry1;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,7 +29,7 @@ public class TestPattern {
     }
 
     public static void testAbstractFactory() {
-        com.fly.demo.entity.design_pattern.abstract_factory.CoffeeStore coffeeStore = new com.fly.demo.entity.design_pattern.abstract_factory.CoffeeStore();
+        com.fly.demo.base.entity.design_pattern.abstract_factory.CoffeeStore coffeeStore = new com.fly.demo.base.entity.design_pattern.abstract_factory.CoffeeStore();
         coffeeStore.setCoffeeFactory(new AmericanCoffeeFactory());
         Coffee coffee = coffeeStore.orderCoffee();
         log.info("您的咖啡 {}", coffee.getName());

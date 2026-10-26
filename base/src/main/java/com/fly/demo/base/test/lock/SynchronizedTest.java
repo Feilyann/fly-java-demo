@@ -1,6 +1,6 @@
 package com.fly.demo.base.test.lock;
 
-import com.fly.demo.entity.Money;
+import com.fly.demo.base.entity.Money;
 
 
 public class SynchronizedTest {
